@@ -1,0 +1,390 @@
+/* Root Variables */
+:root {
+  --primary-color: #2a6ea6;
+  --secondary-color: #1a4971;
+  --background-light: #f0f8ff;
+  --background-white: #ffffff;
+  --border-color: #b2cbde;
+  --text-color: #333333;
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  --border-radius: 6px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --font-size-sm: 12px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --transition: all 0.3s ease;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px; /* Base for rem */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--font-size-md);
+}
+
+/* Sidebar */
+.sidebar {
+  background-color: var(--border-color);
+  transition: width var(--transition);
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.sidebar.open {
+  width: clamp(12rem, 20vw, 15rem);
+}
+
+.sidebar.closed {
+  width: clamp(3rem, 8vw, 3.75rem);
+}
+
+/* Menu Toggle */
+.menu-toggle {
+  padding: var(--spacing-sm);
+  cursor: pointer;
+  color: var(--secondary-color);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+.menu-toggle:hover {
+  color: var(--primary-color);
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-sm);
+  color: var(--secondary-color);
+}
+
+.profile-pic {
+  width: clamp(3rem, 20vw, 7rem);
+  height: clamp(3rem, 20vw, 7rem);
+  background-color: var(--background-white);
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin-bottom: var(--spacing-sm);
+  border: 2px solid var(--primary-color);
+  object-fit: cover;
+}
+
+.profile-pic.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-light);
+  border: 2px dashed var(--primary-color);
+  font-size: var(--font-size-sm);
+  color: var(--primary-color);
+}
+
+.profile-section h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.error-text {
+  font-size: var(--font-size-sm);
+  color: #ef4444;
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm);
+  color: var(--secondary-color);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(42, 110, 166, 0.2);
+}
+
+.sidebar-item.active {
+  background: var(--gradient-primary);
+  color: var(--background-white);
+  font-weight: 600;
+  border-radius: var(--border-radius);
+}
+
+.sidebar-icon {
+  width: clamp(1.5rem, 5vw, 1.75rem);
+  text-align: center;
+  flex-shrink: 0;
+  font-size: clamp(1rem, 4vw, 1.25rem);
+}
+
+.sidebar-text {
+  margin-left: var(--spacing-sm);
+  font-size: var(--font-size-md);
+  white-space: nowrap;
+  transition: opacity var(--transition);
+}
+
+/* Tooltip for Closed Sidebar */
+.sidebar.closed .sidebar-text {
+  display: none;
+}
+
+.sidebar.closed .sidebar-item:hover .sidebar-text {
+  display: block;
+  position: absolute;
+  left: calc(100% + var(--spacing-sm));
+  background: var(--gradient-primary);
+  background-color: var(--secondary-color); /* Fallback for non-gradient browsers */
+  color: var(--background-white);
+  padding: calc(var(--spacing-sm) * 0.75) var(--spacing-sm);
+  border-radius: var(--border-radius);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  z-index: 1000; /* Increased to avoid overlap */
+  box-shadow: var(--box-shadow);
+  opacity: 0;
+  animation: tooltipAppear 0.3s ease forwards;
+  pointer-events: none; /* Prevent tooltip from blocking clicks */
+}
+
+/* === FULLY ISOLATED LOGOUT DIALOG STYLES === */
+
+.sidebar .logout-dialog-overlay,
+.logout-dialog-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 9999 !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.sidebar .logout-dialog,
+.logout-dialog {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  width: 90% !important;
+  max-width: 400px !important;
+  padding: 28px !important;
+  text-align: center !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  border: 1px solid #e6f0f7 !important;
+  animation: sidebar-dialog-slide-in 0.3s ease !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+}
+
+@keyframes sidebar-dialog-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.logout-dialog .logout-icon-wrapper {
+  font-size: 48px !important;
+  color: #0a2472 !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.logout-dialog h3 {
+  margin: 0 0 12px !important;
+  font-size: 20px !important;
+  color: #0a2472 !important;
+  font-weight: 600 !important;
+}
+
+.logout-dialog p {
+  color: #0a2472 !important;
+  font-size: 15px !important;
+  margin: 0 0 20px !important;
+  line-height: 1.5 !important;
+}
+
+.logout-dialog .logout-dialog-actions {
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  margin-top: 16px !important;
+}
+
+.logout-dialog .btn-cancel,
+.logout-dialog .btn-confirm {
+  padding: 10px 20px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.logout-dialog .btn-cancel {
+  background: #f5f9fc !important;
+  color: #0a2472 !important;
+  border: 1px solid #d4e6f1 !important;
+}
+
+.logout-dialog .btn-cancel:hover:not(:disabled) {
+  background: #e6f0f7 !important;
+  color: #2c3e50 !important;
+  transform: translateY(-1px) !important;
+}
+
+.logout-dialog .btn-confirm {
+  background: #386fa4 !important;
+  color: white !important;
+}
+
+.logout-dialog .btn-confirm:hover:not(:disabled) {
+  background: #166088 !important;
+  transform: translateY(-1px) !important;
+}
+
+.logout-dialog button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* === MEDIA QUERY FOR MOBILE === */
+@media (max-width: 480px) {
+  .logout-dialog {
+    width: 94% !important;
+    padding: 24px !important;
+  }
+  .logout-dialog-actions {
+    flex-direction: column !important;
+  }
+  .logout-dialog .btn-cancel,
+  .logout-dialog .btn-confirm {
+    width: 100% !important;
+  }
+}
+
+@keyframes tooltipAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+  }
+}
+
+/* Hide profile section when closed */
+.sidebar.closed .profile-section {
+  display: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidebar.open {
+    width: clamp(10rem, 50vw, 12rem);
+  }
+
+  .sidebar.closed {
+    width: clamp(2.5rem, 8vw, 3rem);
+  }
+
+  .menu-toggle {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+  }
+
+  .profile-pic {
+    width: clamp(2rem, 8vw, 2.5rem);
+    height: clamp(2rem, 8vw, 2.5rem);
+  }
+
+  .profile-section h3 {
+    font-size: var(--font-size-sm);
+  }
+
+  .sidebar-text {
+    font-size: var(--font-size-sm);
+  }
+
+  .sidebar-icon {
+    width: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  .sidebar.closed .sidebar-item:hover .sidebar-text {
+    font-size: clamp(0.75rem, 2vw, 0.875rem);
+    padding: calc(var(--spacing-sm) / 2) var(--spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar.open {
+    width: clamp(9rem, 60vw, 10rem);
+  }
+
+  .sidebar.closed {
+    width: clamp(2rem, 7vw, 2.5rem);
+  }
+
+  .sidebar-text {
+    font-size: clamp(0.65rem, 2vw, 0.75rem);
+  }
+
+  .sidebar-icon {
+    width: clamp(1rem, 3.5vw, 1.25rem);
+  }
+
+  .profile-pic {
+    width: clamp(1.75rem, 7vw, 2rem);
+    height: clamp(1.75rem, 7vw, 2rem);
+  }
+
+  .sidebar.closed .sidebar-item:hover .sidebar-text {
+    font-size: clamp(0.65rem, 1.8vw, 0.75rem);
+    padding: calc(var(--spacing-sm) / 2) calc(var(--spacing-sm) * 0.75);
+  }
+}

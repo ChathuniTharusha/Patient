@@ -1,0 +1,30 @@
+.header-shadow {
+  position: relative;
+  width: 100%;
+  height: var(--header-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  background: #427aa1;
+  color: white;
+  z-index: 10;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  background-blend-mode: overlay;
+}
+
+.header-shadow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 38, 76, 0.4); /* dark blue overlay */
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.header-shadow > * {
+  z-index: 2;
+}

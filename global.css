@@ -1,0 +1,18 @@
+/* global.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+  scroll-behavior: smooth; /* Optional: smooth scrolling */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem; /* Scales relative to html */
+  line-height: 1.5; /* Improve readability */
+  background-color: var(--background-white);
+}

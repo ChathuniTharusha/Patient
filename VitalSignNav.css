@@ -1,0 +1,40 @@
+.vital-sign-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Reduced from 10px */
+  color: black;
+  font-weight: 500;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reduced from 8px */
+}
+
+
+.nav-button {
+  display: block;
+  padding: 8px 12px; /* Reduced from 10px 15px */
+  text-decoration: none;
+  color: black;
+  background: #83b0e1;
+  border-radius: 4px;
+  font-size: 0.9rem; /* Reduced from 1rem */
+  transition: background-color 0.2s;
+}
+
+.nav-button:hover,
+.nav-button:focus {
+  background: #83b0e1;
+}
+
+.nav-button.active {
+  background: #1d3461;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.nav-button:focus {
+  box-shadow: 0 0 0 2px #85AFEC;
+}

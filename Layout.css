@@ -1,0 +1,111 @@
+/* Layout.css */
+:root {
+  --primary-color: #2a6ea6;
+  --secondary-color: #1a4971;
+  --accent-color: #ff6b6b;
+  --background-light: #f9faff;
+  --background-white: #ffffff;
+  --spacing-xs: clamp(0.2rem, 1vw, 0.25rem);
+  --spacing-sm: clamp(0.4rem, 1.5vw, 0.5rem);
+  --spacing-md: clamp(0.8rem, 2vw, 1rem);
+  --spacing-lg: clamp(1.2rem, 2.5vw, 1.5rem);
+  --font-size-sm: clamp(0.65rem, 2vw, 0.75rem);
+  --font-size-md: clamp(0.8rem, 2.5vw, 0.875rem);
+  --font-size-lg: clamp(0.9rem, 3vw, 1rem);
+  --font-size-xl: clamp(1.1rem, 3.5vw, 1.25rem);
+  --font-size-xxl: clamp(1.5rem, 4vw, 2rem);
+  --border-radius: 8px; /* Slightly larger for modern look */
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --gradient-primary: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  --sidebar-width: 250px;
+  --header-height: 80px;
+  --footer-height: 80px;
+}
+
+/* Base Layout */
+.layout-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden; /* Prevent layout scrollbars */
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: calc(100vh - var(--header-height));
+  position: sticky;
+  top: var(--header-height);
+  z-index: 90;
+  background-color: #B9D9EB;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  flex-shrink: 0;
+  height: var(--header-height);
+  z-index: 100;
+  background-color: #72A0C1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.content-wrapper {
+  flex: 1;
+  padding: var(--spacing-md);
+  background: transparent;
+  max-height: calc(100vh - var(--header-height) - var(--footer-height));
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  flex-shrink: 0;
+  height: var(--footer-height);
+  background-color: var(--background-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-md);
+  color: var(--text-color);
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 0;
+    display: none;
+  }
+  .main-content {
+    flex: 1;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: var(--spacing-sm);
+  }
+}
+
+/* Tailwind Overrides */
+.dark-mode .sidebar {
+  background-color: #2E5090;
+}
+.dark-mode header {
+  background-color: #5072A7;
+}
+.dark-mode .content-wrapper {
+  background-color: #2c3e50;
+  color: #fff;
+}
+.dark-mode footer {
+  background-color: #2c3e50;
+  color: #fff;
+}

@@ -1,0 +1,1350 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Primary blue palette - softer and more welcoming */
+  --primary-blue: #2563eb;
+  --secondary-blue: #3b82f6;
+  --light-blue: #60a5fa;
+  --soft-blue: #93c5fd;
+  --background-light: #f8fafc;
+  --neutral-gray: #64748b;
+  --white: #ffffff;
+  
+  /* Patient-friendly colors */
+  --success-green: #10b981;
+  --success-light: #d1fae5;
+  --info-blue: #0ea5e9;
+  --info-light: #e0f2fe;
+  --warning-blue: #1e40af;
+  --warning-light: #dbeafe;
+  --gentle-blue: #3b82f6;
+  --gentle-blue-light: #dbeafe;
+  
+  /* Health-specific colors */
+  --health-attention: #1d4ed8;
+  --health-attention-light: #dbeafe;
+  --health-critical: #1e3a8a;
+  --health-critical-light: #e0e7ff;
+  
+  /* Interactive colors */
+  --hover-blue: #1d4ed8;
+  --focus-ring: rgba(59, 130, 246, 0.5);
+  
+  /* Gradients */
+  --daily-tip-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  --auto-update-gradient: linear-gradient(135deg, #10b981, #059669);
+  --success-gradient: linear-gradient(135deg, #10b981, #047857);
+  --info-gradient: linear-gradient(135deg, #0ea5e9, #0284c7);
+  --attention-gradient: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+  --critical-gradient: linear-gradient(135deg, #1e3a8a, #1e40af);
+  
+  /* Typography */
+  --font-size-xl: 1.8rem;
+  --font-size-lg: 1.4rem;
+  --font-size-md: 0.95rem;
+  --font-size-sm: 0.85rem;
+  
+  /* Spacing */
+  --spacing-xs: 0.4rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.2rem;
+  --spacing-lg: 1.6rem;
+  
+  /* Design elements */
+  --border-radius: 1rem;
+  --border-radius-sm: 0.5rem;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --transition: all 0.3s ease-in-out;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--background-light);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: linear-gradient(135deg, var(--background-light), #f1f5f9);
+  min-height: 100vh;
+  color: var(--deep-navy);
+  box-sizing: border-box;
+}
+
+.header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: clamp(40rem, 80vw, 50rem);
+  margin-bottom: var(--spacing-md);
+}
+
+.page-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(37, 99, 235, 0.1);
+  animation: bounceIn 0.8s ease-out;
+}
+
+.mark-all-read {
+  background: var(--secondary-blue);
+  color: var(--white);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.mark-all-read:hover {
+  background: var(--hover-blue);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.notifications-list {
+  width: 100%;
+  max-width: clamp(40rem, 80vw, 50rem);
+  max-height: calc(100vh - var(--font-size-xl) - 3 * var(--spacing-md));
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--soft-blue) var(--background-light);
+}
+
+.notifications-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notifications-list::-webkit-scrollbar-track {
+  background: var(--background-light);
+  border-radius: var(--border-radius);
+}
+
+.notifications-list::-webkit-scrollbar-thumb {
+  background: var(--soft-blue);
+  border-radius: var(--border-radius);
+}
+
+.notifications-list::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-blue);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  color: var(--neutral-gray);
+  margin: var(--spacing-md) 0;
+}
+
+.empty-state h3 {
+  font-size: var(--font-size-lg);
+  margin: var(--spacing-sm) 0;
+  color: var(--deep-navy);
+}
+
+.empty-state p {
+  font-size: var(--font-size-md);
+  color: var(--slate-blue);
+}
+
+.section-header {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--deep-navy);
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  padding-left: var(--spacing-sm);
+}
+
+.notification-item {
+  background: var(--white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  transition: var(--transition);
+  cursor: pointer;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.notification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-hover);
+  border-color: var(--secondary-blue);
+}
+
+.notification-item.unread {
+  border-left: 4px solid var(--info-blue);
+  background: linear-gradient(135deg, var(--info-light), var(--white));
+}
+
+.notification-item.appointment_accepted {
+  background: linear-gradient(135deg, var(--success-light), var(--white));
+  border-left: 4px solid var(--success-green);
+}
+
+.notification-item.appointment_accepted:hover {
+  background: var(--success-gradient);
+  color: var(--white);
+}
+
+.notification-item.appointment_rejected,
+.notification-item.appointment_postponed {
+  background: linear-gradient(135deg, var(--warning-light), var(--white));
+  border-left: 4px solid var(--warning-blue);
+}
+
+.notification-item.appointment_rejected:hover,
+.notification-item.appointment_postponed:hover {
+  background: linear-gradient(135deg, var(--warning-blue), #1e40af);
+  color: var(--white);
+}
+
+.notification-item.medical_report_created {
+  background: linear-gradient(135deg, var(--info-light), var(--white));
+  border-left: 4px solid var(--info-blue);
+}
+
+.notification-item.medical_report_created:hover {
+  background: var(--info-gradient);
+  color: var(--white);
+}
+
+.notification-item.health_analysis {
+  background: linear-gradient(135deg, var(--health-attention-light), var(--white));
+  border-left: 4px solid var(--health-attention);
+}
+
+.notification-item.health_analysis:hover {
+  background: var(--attention-gradient);
+  color: var(--white);
+}
+
+.notification-item.health_alert {
+  background: linear-gradient(135deg, var(--gentle-blue-light), var(--white));
+  border-left: 4px solid var(--gentle-blue);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.15);
+}
+
+.notification-item.health_alert:hover {
+  background: linear-gradient(135deg, var(--gentle-blue), #2563eb);
+  color: var(--white);
+}
+
+.notification-item.health_alert.critical-alert {
+  background: linear-gradient(135deg, var(--health-critical-light), var(--white));
+  border-left: 4px solid var(--health-critical);
+  box-shadow: 0 2px 15px rgba(30, 58, 138, 0.2);
+  animation: gentlePulse 3s ease-in-out infinite;
+}
+
+.notification-item.health_alert.critical-alert:hover {
+  background: var(--critical-gradient);
+  color: var(--white);
+}
+
+.notification-item.iot_data {
+  background: linear-gradient(135deg, #f1f5f9, var(--white));
+  border-left: 4px solid var(--neutral-gray);
+}
+
+.notification-item.iot_data:hover {
+  background: linear-gradient(135deg, var(--neutral-gray), #475569);
+  color: var(--white);
+}
+
+.notification-item.daily_tip {
+  background: linear-gradient(135deg, var(--warning-light), var(--white));
+  border-left: 4px solid var(--warning-blue);
+}
+
+.notification-item.daily_tip:hover {
+  background: var(--daily-tip-gradient);
+  color: var(--white);
+}
+
+.notification-item.automatic-update {
+  background: linear-gradient(135deg, var(--success-light), rgba(96, 165, 250, 0.05), var(--white));
+  border-left: 4px solid var(--success-green);
+  box-shadow: 0 2px 12px rgba(16, 185, 129, 0.15);
+  position: relative;
+}
+
+.notification-item.automatic-update::before {
+  content: '🤖';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--auto-update-gradient);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  animation: friendlyPulse 2.5s ease-in-out infinite;
+}
+
+.notification-item.automatic-update:hover {
+  background: var(--auto-update-gradient);
+  color: var(--white);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
+}
+
+.notification-item.daily_tip.automatic-update {
+  background: linear-gradient(135deg, var(--success-light), var(--warning-light), var(--white));
+  border-left: 4px solid;
+  border-image: linear-gradient(135deg, var(--success-green), var(--warning-blue)) 1;
+}
+
+.notification-item.daily_tip.automatic-update:hover {
+  background: linear-gradient(135deg, var(--auto-update-gradient), var(--daily-tip-gradient));
+  color: var(--white);
+}
+
+.notification-item:hover .notif-icon,
+.notification-item:hover .notif-content h3,
+.notification-item:hover .notif-content p,
+.notification-item:hover .notif-footer {
+  color: var(--white);
+}
+
+.notif-icon {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: var(--secondary-blue);
+  min-width: 36px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.notification-item.appointment_accepted .notif-icon {
+  color: var(--success-green);
+}
+
+.notification-item.appointment_rejected .notif-icon,
+.notification-item.appointment_postponed .notif-icon {
+  color: var(--warning-blue);
+}
+
+.notification-item.medical_report_created .notif-icon {
+  color: var(--info-blue);
+}
+
+.notification-item.health_analysis .notif-icon {
+  color: var(--health-attention);
+}
+
+.notification-item.health_alert .notif-icon {
+  color: var(--gentle-blue);
+}
+
+.notification-item.health_alert.critical-alert .notif-icon {
+  color: var(--health-critical);
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+.notification-item.iot_data .notif-icon {
+  color: var(--neutral-gray);
+}
+
+.notification-item.daily_tip .notif-icon {
+  color: var(--warning-blue);
+  filter: drop-shadow(0 1px 3px rgba(30, 64, 175, 0.3));
+}
+
+.notification-item.automatic-update .notif-icon {
+  color: var(--success-green);
+  filter: drop-shadow(0 1px 3px rgba(16, 185, 129, 0.4));
+  animation: friendlyPulse 2.5s ease-in-out infinite;
+}
+
+.notification-item.daily_tip.automatic-update .notif-icon {
+  color: var(--info-blue);
+  filter: drop-shadow(0 1px 4px rgba(14, 165, 233, 0.5));
+  animation: gentleGlow 3s ease-in-out infinite alternate;
+}
+
+.notif-content {
+  flex: 1;
+}
+
+.notif-content h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  line-height: 1.3;
+}
+
+.notif-content p {
+  font-size: var(--font-size-md);
+  color: var(--neutral-gray);
+  margin-bottom: var(--spacing-xs);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5;
+}
+
+.notif-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: var(--spacing-xs) 0;
+}
+
+.notif-location {
+  font-size: var(--font-size-sm);
+  color: var(--neutral-gray);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.notif-change-type {
+  font-size: 0.75rem;
+  color: var(--success-green);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--success-light);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  width: fit-content;
+}
+
+.health-alert-badge {
+  font-size: 0.75rem;
+  color: var(--gentle-blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--gentle-blue-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: inline-block;
+}
+
+.notif-footer {
+  font-size: var(--font-size-sm);
+  color: var(--neutral-gray);
+  opacity: 0.8;
+  margin-top: var(--spacing-xs);
+}
+
+.auto-badge {
+  background: var(--success-green);
+  color: var(--white);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: gentleGlow 3s ease-in-out infinite alternate;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.3);
+}
+
+.critical-badge {
+  background: var(--health-critical);
+  color: var(--white);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: gentleCriticalGlow 2s ease-in-out infinite alternate;
+  box-shadow: 0 1px 3px rgba(30, 58, 138, 0.4);
+}
+
+.auto-update-indicator {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+  animation: friendlyPulse 2.5s ease-in-out infinite;
+}
+
+.critical-indicator {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+.dot-indicator {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 10px;
+  height: 10px;
+  background: var(--info-blue);
+  border-radius: 50%;
+}
+
+.popup-container {
+  position: fixed;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: clamp(16rem, 50vw, 22rem);
+}
+
+.popup {
+  background: var(--white);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-hover);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  animation: slideIn 0.5s ease-out;
+  position: relative;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.popup.appointment_accepted {
+  border-left: 5px solid var(--success-green);
+  background: linear-gradient(135deg, var(--success-light), var(--white));
+}
+
+.popup.appointment_rejected,
+.popup.appointment_postponed {
+  border-left: 5px solid var(--warning-blue);
+  background: linear-gradient(135deg, var(--warning-light), var(--white));
+}
+
+.popup.medical_report_created {
+  border-left: 5px solid var(--info-blue);
+  background: linear-gradient(135deg, var(--info-light), var(--white));
+}
+
+.popup.health_analysis,
+.popup.health_alert {
+  border-left: 5px solid var(--health-attention);
+  background: var(--attention-gradient);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(29, 78, 216, 0.3);
+  animation: slideInGlow 0.6s ease-out;
+}
+
+.popup.health_alert.critical-alert {
+  border-left: 5px solid var(--health-critical);
+  background: var(--critical-gradient);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+  animation: slideInCritical 0.7s ease-out;
+}
+
+.popup.health_alert .notif-icon,
+.popup.health_analysis .notif-icon {
+  color: var(--white);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+.popup.health_alert .popup-content h3,
+.popup.health_alert .popup-content p,
+.popup.health_analysis .popup-content h3,
+.popup.health_analysis .popup-content p {
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.popup.health_alert .popup-close,
+.popup.health_analysis .popup-close {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup.health_alert .popup-close:hover,
+.popup.health_analysis .popup-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.popup.iot_data {
+  border-left: 5px solid var(--neutral-gray);
+}
+
+.popup.daily_tip {
+  border-left: 5px solid var(--warning-blue);
+  background: var(--daily-tip-gradient);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+}
+
+.popup.daily_tip .notif-icon {
+  color: var(--white);
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+}
+
+.popup.daily_tip .popup-content h3,
+.popup.daily_tip .popup-content p {
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.popup.daily_tip .popup-close {
+  color: var(--white);
+}
+
+.popup.daily_tip .popup-close:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.popup.automatic-update {
+  border-left: 5px solid var(--success-green);
+  background: var(--auto-update-gradient);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+  animation: slideInGlow 0.6s ease-out;
+}
+
+.popup.automatic-update::before {
+  content: '🤖';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--auto-update-gradient);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  animation: friendlyPulse 2.5s ease-in-out infinite;
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+}
+
+.popup.daily_tip.automatic-update {
+  background: linear-gradient(135deg, var(--auto-update-gradient), var(--daily-tip-gradient));
+  border-left: 5px solid;
+  border-image: linear-gradient(135deg, var(--success-green), var(--warning-blue)) 1;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3), 0 8px 20px rgba(30, 64, 175, 0.2);
+}
+
+.popup.automatic-update .notif-icon {
+  color: var(--white);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  animation: gentlePulse 2.5s ease-in-out infinite;
+}
+
+.popup.automatic-update .popup-content h3,
+.popup.automatic-update .popup-content p,
+.popup.automatic-update .popup-metadata small {
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.popup.automatic-update .popup-close {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup.automatic-update .popup-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+.popup-content {
+  flex: 1;
+}
+
+.popup-content h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+  line-height: 1.3;
+}
+
+.popup-content p {
+  font-size: var(--font-size-sm);
+  color: var(--neutral-gray);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.4;
+}
+
+.popup-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: var(--spacing-xs);
+}
+
+.popup-location {
+  font-size: 0.7rem;
+  color: var(--neutral-gray);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.popup-change-type {
+  font-size: 0.65rem;
+  color: var(--success-green);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  background: var(--success-light);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--border-radius-sm);
+  display: inline-block;
+  width: fit-content;
+}
+
+.popup.automatic-update .popup-change-type {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.health-alert-indicator {
+  font-size: 0.7rem;
+  color: var(--gentle-blue);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--gentle-blue-light);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  display: inline-block;
+}
+
+.popup.health_alert .health-alert-indicator,
+.popup.health_analysis .health-alert-indicator {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.popup-close {
+  cursor: pointer;
+  color: var(--neutral-gray);
+  font-size: var(--font-size-md);
+  transition: var(--transition);
+  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(100, 116, 139, 0.1);
+}
+
+.popup-close:hover {
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: clamp(20rem, 80vw, 40rem);
+  max-height: calc(90vh - 2 * var(--spacing-md));
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  color: var(--neutral-gray);
+  position: relative;
+  animation: modalSlideIn 0.4s ease-out;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.modal-content.appointment_accepted {
+  border-left: 6px solid var(--success-green);
+  background: linear-gradient(135deg, var(--success-light), var(--white));
+}
+
+.modal-content.appointment_rejected,
+.modal-content.appointment_postponed {
+  border-left: 6px solid var(--warning-blue);
+  background: linear-gradient(135deg, var(--warning-light), var(--white));
+}
+
+.modal-content.medical_report_created {
+  border-left: 6px solid var(--info-blue);
+  background: linear-gradient(135deg, var(--info-light), var(--white));
+}
+
+.modal-content.health_analysis,
+.modal-content.health_alert {
+  border-left: 6px solid var(--health-attention);
+  background: linear-gradient(135deg, var(--health-attention-light), var(--white));
+}
+
+.modal-content.health_alert.critical-alert {
+  border-left: 6px solid var(--health-critical);
+  background: linear-gradient(135deg, var(--health-critical-light), var(--white));
+  box-shadow: 0 8px 32px rgba(30, 58, 138, 0.15);
+}
+
+.modal-content.iot_data {
+  border-left: 6px solid var(--neutral-gray);
+}
+
+.modal-content.daily_tip {
+  border-left: 6px solid var(--warning-blue);
+  background: linear-gradient(135deg, var(--warning-light), var(--white));
+}
+
+.modal-content.automatic-update {
+  border-left: 6px solid var(--success-green);
+  background: linear-gradient(135deg, var(--success-light), var(--white));
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+  position: relative;
+}
+
+.modal-content.automatic-update::before {
+  content: '🤖';
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: var(--auto-update-gradient);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  animation: friendlyPulse 2.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+.modal-content.daily_tip.automatic-update {
+  border-left: 6px solid;
+  border-image: linear-gradient(135deg, var(--success-green), var(--warning-blue)) 1;
+  background: linear-gradient(135deg, var(--success-light), var(--warning-light), var(--white));
+}
+
+.close-icon {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--neutral-gray);
+  transition: var(--transition);
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(100, 116, 139, 0.1);
+}
+
+.close-icon:hover {
+  color: var(--primary-blue);
+  background: rgba(37, 99, 235, 0.1);
+  transform: rotate(90deg);
+}
+
+.modal-content h2 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding-right: 3rem;
+  line-height: 1.3;
+}
+
+.modal-content p {
+  font-size: var(--font-size-md);
+  color: var(--neutral-gray);
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.6;
+}
+
+.modal-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin: var(--spacing-md) 0 var(--spacing-sm) 0;
+  border-bottom: 2px solid var(--background-light);
+  padding-bottom: var(--spacing-xs);
+}
+
+.health-analysis-details {
+  background: linear-gradient(135deg, var(--health-attention-light), rgba(255, 255, 255, 0.9));
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin: var(--spacing-sm) 0;
+  border: 1px solid rgba(29, 78, 216, 0.2);
+}
+
+.health-analysis-section {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--white);
+  border-radius: var(--border-radius-sm);
+  border-left: 3px solid var(--health-attention);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.health-analysis-section:last-child {
+  margin-bottom: 0;
+}
+
+.vital-signs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-sm);
+  margin: var(--spacing-sm) 0;
+}
+
+.vital-sign-item {
+  background: var(--health-attention-light);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(29, 78, 216, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.vital-sign-item:hover {
+  background: rgba(29, 78, 216, 0.1);
+  border-color: var(--health-attention);
+}
+
+.vital-key {
+  font-weight: 600;
+  color: var(--primary-blue);
+  text-transform: capitalize;
+}
+
+.vital-value {
+  font-weight: 700;
+  color: var(--health-attention);
+  font-size: 0.9rem;
+}
+
+.medical-explanation,
+.preventive-advice {
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(29, 78, 216, 0.15);
+  line-height: 1.6;
+  color: var(--neutral-gray);
+  white-space: pre-line;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.health-recommendations {
+  background: var(--success-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  margin: var(--spacing-sm) 0;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.health-recommendations ul {
+  margin: var(--spacing-xs) 0 0 0;
+  padding-left: var(--spacing-md);
+}
+
+.health-recommendations li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--neutral-gray);
+  line-height: 1.6;
+}
+
+.health-recommendations strong {
+  color: var(--primary-blue);
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.modal-content th,
+.modal-content td {
+  padding: var(--spacing-sm);
+  text-align: left;
+  border-bottom: 1px solid var(--background-light);
+}
+
+.modal-content th {
+  font-weight: 600;
+  color: var(--primary-blue);
+  background: linear-gradient(135deg, var(--info-light), #e0f2fe);
+}
+
+.modal-content td {
+  color: var(--neutral-gray);
+  background: var(--white);
+}
+
+.modal-footer {
+  font-size: var(--font-size-sm);
+  color: var(--neutral-gray);
+  opacity: 0.8;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--background-light);
+}
+
+.daily-tip-full-content {
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-md);
+  background: var(--warning-light);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(30, 64, 175, 0.3);
+}
+
+.modal-content.automatic-update .daily-tip-full-content {
+  background: var(--success-light);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.daily-tip-modal-text {
+  background: rgba(30, 64, 175, 0.1);
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-md);
+  margin: var(--spacing-xs) 0 0 0;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: #1f2937;
+  white-space: pre-wrap;
+  border: 1px solid rgba(30, 64, 175, 0.2);
+  font-weight: 500;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.modal-content.automatic-update .daily-tip-modal-text {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.daily-tip-modal-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.daily-tip-modal-text::-webkit-scrollbar-track {
+  background: rgba(30, 64, 175, 0.1);
+  border-radius: 3px;
+}
+
+.daily-tip-modal-text::-webkit-scrollbar-thumb {
+  background: rgba(30, 64, 175, 0.4);
+  border-radius: 3px;
+}
+
+.modal-content.automatic-update .daily-tip-modal-text::-webkit-scrollbar-track {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.modal-content.automatic-update .daily-tip-modal-text::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.4);
+}
+
+.error-text {
+  color: var(--gentle-blue);
+  font-size: var(--font-size-md);
+  text-align: center;
+  padding: var(--spacing-md);
+  background: var(--gentle-blue-light);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+@keyframes gentleGlow {
+  from { box-shadow: 0 0 5px rgba(16, 185, 129, 0.3); }
+  to { box-shadow: 0 0 12px rgba(16, 185, 129, 0.6); }
+}
+
+@keyframes gentleCriticalGlow {
+  from { box-shadow: 0 0 8px rgba(30, 58, 138, 0.4); }
+  to { box-shadow: 0 0 16px rgba(30, 58, 138, 0.7); }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes friendlyPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.1);
+    filter: brightness(1.3);
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInGlow {
+  0% { 
+    transform: translateX(100%); 
+    opacity: 0; 
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 0.8;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+  }
+  100% { 
+    transform: translateX(0); 
+    opacity: 1; 
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+  }
+}
+
+@keyframes slideInCritical {
+  0% { 
+    transform: translateX(100%); 
+    opacity: 0; 
+    box-shadow: 0 0 0 rgba(30, 58, 138, 0);
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 0.8;
+    box-shadow: 0 8px 30px rgba(30, 58, 138, 0.6);
+  }
+  100% { 
+    transform: translateX(0); 
+    opacity: 1; 
+    box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+  }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+  0% { transform: scale(0.95) translateY(-20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  .notifications-page {
+    padding: var(--spacing-sm);
+  }
+  .notifications-list {
+    max-height: calc(100vh - var(--font-size-xl) - 2 * var(--spacing-sm));
+  }
+  .popup {
+    max-width: clamp(14rem, 70vw, 20rem);
+  }
+  .modal-content {
+    max-width: clamp(18rem, 85vw, 36rem);
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-title {
+    font-size: clamp(1.4rem, 4.5vw, 1.6rem);
+  }
+  .notif-content h3,
+  .modal-content h2 {
+    font-size: clamp(1.2rem, 4vw, 1.3rem);
+  }
+  .notif-content p,
+  .modal-content p,
+  .error-text,
+  .popup-content p {
+    font-size: var(--font-size-sm);
+  }
+  .notif-footer,
+  .modal-footer {
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
+  }
+  .notif-icon,
+  .close-icon,
+  .popup-close {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+  }
+  .popup-content h3 {
+    font-size: var(--font-size-sm);
+  }
+  .auto-badge,
+  .critical-badge {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .popup::before,
+  .modal-content.automatic-update::before {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .notif-change-type,
+  .popup-change-type {
+    font-size: 0.7rem;
+  }
+  .popup-location {
+    font-size: 0.65rem;
+  }
+  .vital-signs-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+  .health-analysis-section {
+    padding: var(--spacing-sm);
+  }
+  .modal-content {
+    padding: var(--spacing-md);
+    max-width: 92vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup-container {
+    right: var(--spacing-xs);
+    top: var(--spacing-xs);
+    left: var(--spacing-xs);
+  }
+  .popup {
+    max-width: 100%;
+    padding: var(--spacing-sm);
+  }
+  .modal-content {
+    width: 95%;
+    padding: var(--spacing-sm);
+    margin: var(--spacing-xs);
+  }
+  .health-analysis-details {
+    padding: var(--spacing-sm);
+  }
+  .vital-sign-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .notification-item {
+    padding: var(--spacing-sm);
+  }
+  .close-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (prefers-contrast: high) {
+  :root {
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --box-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  .notification-item {
+    border-width: 2px;
+  }
+  .modal-content {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .notification-item:hover {
+    transform: none;
+  }
+}
+
+.notification-item:focus,
+.popup-close:focus,
+.close-icon:focus {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}

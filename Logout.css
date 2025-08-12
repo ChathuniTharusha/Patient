@@ -1,0 +1,198 @@
+/* Logout Page Container */
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+    background: linear-gradient(135deg, #1D3461, #74ACDB, #2C456B);
+    background-size: 300% 300%;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+  }
+  
+  /* Logout Box */
+  .logout-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Logout Icon */
+  .logout-icon {
+    font-size: 60px;
+    color: #ff4d4d;
+    margin-bottom: 10px;
+  }
+  
+  /* Title */
+  .logout-box h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  /* Logout Message */
+  .logout-box p {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+  }
+  
+  /* Logout Button */
+  .logout-button {
+    background: linear-gradient(90deg, #ff4d4d, #ff8080);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+  }
+  
+  .logout-button:hover {
+    background: linear-gradient(90deg, #ff2d2d, #ff6666);
+  }
+  
+  /* Help Section */
+  .logout-help {
+    margin-top: 12px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  
+  .logout-help a {
+    color: #ffdb4d;
+    text-decoration: none;
+  }
+  
+  .logout-help a:hover {
+    text-decoration: underline;
+  }
+
+  .logout-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .confirm-logout {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .confirm-logout:hover {
+    background: #d93636;
+  }
+  
+  .cancel-logout {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .cancel-logout:hover {
+    background: #3d8b40;
+  }
+  /* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar.closed {
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .dashboard-widgets {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .widget {
+    padding: 15px;
+  }
+
+  .welcome-text {
+    font-size: 22px;
+  }
+
+  .search-container input {
+    width: 160px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+  .sidebar nav ul li {
+    padding: 8px;
+  }
+
+  .sidebar.closed nav ul li img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .widget {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .dashboard-widgets {
+    gap: 16px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+  }
+
+  .welcome-text {
+    font-size: 20px;
+  }
+
+  .search-container input {
+    width: 140px;
+    font-size: 14px;
+  }
+
+  .search-button img {
+    width: 20px;
+    height: 20px;
+  }
+}

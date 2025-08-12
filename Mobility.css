@@ -1,0 +1,165 @@
+/* Mobility.css */
+.mobility-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #304674 0%, #B2CBDE 100%);
+    min-height: calc(100vh - 120px);
+    color: white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .mobility-container {
+    width: 90%;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    margin: 20px 0;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobility-container:hover {
+    transform: translateY(-3px);
+  }
+  
+  .mobility-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .mobility-header h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  
+  .current-mobility {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .current-mobility:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.02);
+  }
+  
+  .mobility-icon {
+    width: 36px;
+    height: 36px;
+    animation: bounce 1.6s ease-in-out infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+  
+  .mobility-text {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  
+  .mobility-graph {
+    height: 280px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: background 0.3s ease;
+  }
+  
+  .mobility-graph:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .mobility-footer {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .mobility-container {
+      width: 95%;
+      padding: 25px;
+    }
+  
+    .mobility-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    .mobility-header h2 {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .mobility-page {
+      padding: 20px 15px;
+    }
+  
+    .mobility-container {
+      padding: 20px;
+    }
+  
+    .current-mobility {
+      padding: 10px 15px;
+    }
+  
+    .mobility-text {
+      font-size: 18px;
+    }
+  
+    .mobility-icon {
+      width: 32px;
+      height: 32px;
+    }
+  
+    .mobility-graph {
+      height: 240px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .mobility-header h2 {
+      font-size: 22px;
+    }
+  
+    .mobility-text {
+      font-size: 16px;
+    }
+  
+    .mobility-icon {
+      width: 28px;
+      height: 28px;
+    }
+  
+    .mobility-graph {
+      height: 200px;
+    }
+  
+    .mobility-footer {
+      font-size: 12px;
+    }
+  }
