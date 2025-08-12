@@ -1,0 +1,116 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar.closed {
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .dashboard-widgets {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .widget {
+    padding: 15px;
+  }
+
+  .welcome-text {
+    font-size: 22px;
+  }
+
+  .search-container input {
+    width: 160px;
+  }
+}
+
+/* Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+  .sidebar nav ul li {
+    padding: 8px;
+  }
+
+  .sidebar.closed nav ul li img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .widget {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .dashboard-widgets {
+    gap: 16px;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+    font-size: 24px;
+  }
+
+  .welcome-text {
+    font-size: 20px;
+  }
+
+  .search-container input {
+    width: 140px;
+    font-size: 14px;
+  }
+
+  .search-button img {
+    width: 20px;
+    height: 20px;
+  }
+}
